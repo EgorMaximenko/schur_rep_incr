@@ -1,5 +1,5 @@
 # schur_rep_incr
-This is a collection of tests for the mathematical paper
+This is a collection of algorithms and tests for the mathematical paper
 "Bialternant formula for Schur polynomials with repeating variables"
 by Luis Angel González-Serrano and Egor Maximenko (2024).
 
