@@ -70,7 +70,7 @@ def my_det(A):
 
 def hom_polynomials(xs, degstop):
     n = len(xs)
-    R = x.base_ring()
+    R = xs.base_ring()
     hs = vector(R, degstop)
     if degstop > 0:
         for k in range(degstop):
@@ -187,5 +187,5 @@ def big_symbolic_test_schur_via_jacobi_trudi_four_forms(lambda_sum_max, N_max):
 
 
 # The following test takes about 3 hours.
-print(big_symbolic_test_schur_via_jacobi_trudi_four_forms(16, 8))
+#print(big_symbolic_test_schur_via_jacobi_trudi_four_forms(16, 8))
 

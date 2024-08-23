@@ -1,6 +1,7 @@
 # This is a part of a joint work by Luis Angel Gonzalez-Serrano and Egor Maximenko
 # "Bialternant formula for Schur polynomials with repeating variables".
 # This the new version, with increasing powers.
+# In this file, we test the matrix identity $G=JM$ used in our "first proof".
 
 
 import time

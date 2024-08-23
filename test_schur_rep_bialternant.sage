@@ -63,7 +63,7 @@ def my_det(A):
 
 def hom_polynomials(xs, degstop):
     n = len(xs)
-    R = parent(xs[0])
+    R = xs.base_ring()
     hs = vector(R, degstop)
     if degstop > 0:
         for k in range(degstop):
@@ -79,7 +79,7 @@ def hom_polynomials(xs, degstop):
 def jacobi_trudi_matrix(la, xs):
     la_len = len(la)
     la_max = la[0] if len(la) > 0 else 0
-    R = parent(xs[0])
+    R = xs.base_ring()
     hs = hom_polynomials(xs, la_max + la_len)
     hfun = lambda j: hs[j] if j >= 0 else R.zero()
     A = matrix(R, la_len, la_len)
