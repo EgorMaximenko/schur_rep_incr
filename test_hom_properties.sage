@@ -211,97 +211,11 @@ def big_test_hom_rep_single_variable(rmax, mmax):
     return big_result
 
 
-def test_Hcolumn_recursive_relation(la, N, k, m, verbose):
-    ts = pol_vars('t', m + 1)
-    R = ts.base_ring()
-    ts_reduced = vector(R, ts[0 : m])
-    lhs = Hcolumn(la, N, k, ts) - ts[m] * Hcolumn(la, N, k + 1, ts)
-    rhs = Hcolumn(la, N, k, ts_reduced)
-    result = (lhs == rhs)
-    if verbose:
-        print('test_Hcolumn_recursive_relation')
-        print('la = %s, N = %d, k = %d, m = %d' % (str(la), N, k, m))
-        print('lhs =', lhs)
-        print('rhs =', rhs)
-        print('result =', result, '\n')
-    return result
-
-
-def big_test_Hcolumn_recursive_relation(lambda_sum_max, N_max, m_max):
-    print('big_test_Hcolumn_recursive_relation')
-    print('lambda_sum_max = %d, N_max = %d, m_max = %d' % (lambda_sum_max, N_max, m_max))
-    t0 = time.time()
-    tests = []
-    for N in range(1, N_max):
-        lambda_list = partitions_with_bounded_length_and_bounded_sum(N, lambda_sum_max)
-        tests += [(la, N, k, m) for la in lambda_list for k in range(lambda_sum_max) for m in range(1, m_max)]
-    print('number of tests: ' + str(len(tests)))
-    big_result = True
-    for la, N, k, m in tests:
-        result = test_Hcolumn_recursive_relation(la, N, k, m, False)
-        big_result = big_result and result
-        #print('N = %d, la = %s, k = %d, m = %d, result = %s' % (N, str(la), k, m, str(result)))
-    print('number of tests: ' + str(len(tests)))
-    print('big_result = ' + str(big_result))
-    t1 = time.time()
-    print('time = %.3g seconds\n' % (t1 - t0))
-    return big_result
-
-
-def test_Hcolumn_difference_relation(la, N, k, m, verbose):
-    ts = pol_vars('t', m + 2)
-    R = ts.base_ring()
-    ts0 = vector(R, ts[0 : m])
-    ts1 = vector(R, m + 1)
-    ts1[0 : m] = ts0
-    ts1[m] = ts[m]
-    ts2 = vector(R, m + 1)
-    ts2[0 : m] = ts0
-    ts2[m] = ts[m + 1]
-    lhs = Hcolumn(la, N, k, ts1) + (ts[m + 1] - ts[m]) * Hcolumn(la, N, k + 1, ts)
-    rhs = Hcolumn(la, N, k, ts2)
-    result = (lhs == rhs)
-    if verbose:
-        print('test_Hcolumn_difference_relation')
-        print('la = %s, N = %d, k = %d, m = %d' % (str(la), N, k, m))
-        print('lhs =', lhs)
-        print('rhs =', rhs)
-        print('result =', result, '\n')
-    return result
-
-
-def big_test_Hcolumn_difference_relation(lambda_sum_max, N_max, m_max):
-    print('big_test_Hcolumn_difference_relation')
-    print('lambda_sum_max = %d, N_max = %d, m_max = %d' % (lambda_sum_max, N_max, m_max))
-    t0 = time.time()
-    tests = []
-    for N in range(1, N_max):
-        lambda_list = partitions_with_bounded_length_and_bounded_sum(N, lambda_sum_max)
-        tests += [(la, N, k, m) for la in lambda_list for k in range(lambda_sum_max) for m in range(1, m_max)]
-    print('number of tests: ' + str(len(tests)))
-    big_result = True
-    for la, N, k, m in tests:
-        result = test_Hcolumn_difference_relation(la, N, k, m, False)
-        big_result = big_result and result
-        #print('N = %d, la = %s, k = %d, m = %d, result = %s' % (N, str(la), k, m, str(result)))
-    print('number of tests: ' + str(len(tests)))
-    print('big_result = ' + str(big_result))
-    t1 = time.time()
-    print('time = %.3g seconds\n' % (t1 - t0))
-    return big_result
-
-
 #print(test_hom_difference_relation(3, 4, True))
-#print(big_test_hom_difference_relation(8, 16))
+print(big_test_hom_difference_relation(8, 16))
 
-print(test_hom_rep_single_variable(3, 5, True))
+#print(test_hom_rep_single_variable(3, 5, True))
 print(big_test_hom_rep_single_variable(8, 16))
 
-#print(big_test_sum_elem_by_hom(8, 16))
-
-#print(test_Hcolumn_recursive_relation([2, 1], 5, 1, 3, True))
-#print(big_test_Hcolumn_recursive_relation(8, 6, 4))
-
-#print(test_Hcolumn_difference_relation([2, 1], 5, 1, 3, True))
-#print(big_test_Hcolumn_difference_relation(8, 6, 4))
+print(big_test_sum_elem_by_hom(8, 16))
 
