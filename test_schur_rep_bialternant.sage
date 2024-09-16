@@ -1,5 +1,5 @@
 # This is a part of a joint work by Luis Angel Gonzalez-Serrano and Egor Maximenko
-# "Bialternant formula for Schur polynomials with repeating variables"
+# "Bialternant formula for Schur polynomials with repeating variables".
 # This the new version, with increasing powers.
 
 
@@ -120,11 +120,14 @@ def confluent_vandermonde_det_formula(ys, ka):
 
 
 def list_with_reps(ys, ka):
-    result = [0] * sum(ka)
+    n = len(ys)
+    N = sum(ka)
+    R = ys.base_ring()
+    result = vector(R, N) 
     k = 0
-    for p in range(len(ys)):
-        for r in range(ka[p]):
-            result[k] = ys[p]
+    for q in range(n):
+        for r in range(ka[q]):
+            result[k] = ys[q]
             k += 1
     return result
 
@@ -269,8 +272,8 @@ def random_symbolic_test_schur_rep_three_formulas():
     return test_schur_rep_three_formulas(la, ka, True)
 
 
-def big_symbolic_test_schur_rep_three_formulas(lambda_sum_max, kappa_sum_max):
-    print('big_symbolic_test_schur_rep_three_formulas,')
+def big_test_schur_rep_three_formulas(lambda_sum_max, kappa_sum_max):
+    print('big_test_schur_rep_three_formulas,')
     print('lambda_sum_max = %d, kappa_sum_max = %d.' % (lambda_sum_max, kappa_sum_max))
     t0 = time.time()
     nmax = kappa_sum_max
@@ -294,8 +297,8 @@ def big_symbolic_test_schur_rep_three_formulas(lambda_sum_max, kappa_sum_max):
     return big_result
 
 
-print(big_symbolic_test_schur_rep_three_formulas(5, 5))
+#print(big_test_schur_rep_three_formulas(6, 6))
 
 # the following test takes almost 14 hours on a personal computer with 3.60GHz CPU.
-#print(big_symbolic_test_schur_rep_three_formulas(9, 9))
+print(big_test_schur_rep_three_formulas(9, 9))
 

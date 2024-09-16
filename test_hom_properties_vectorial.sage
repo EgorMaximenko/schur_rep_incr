@@ -60,12 +60,12 @@ def Hcolumn(la, N, k, ts):
     R = ts.base_ring()
     la_max = la[0] if len(la) > 0 else 0
     la_ext = la + [0] * (N - len(la))
-    degstop = max(la_max + N - k, 1)
+    degstop = max(la_max + N + 1 - k, 1)
     hs = hom_polynomials(ts, degstop)
     hfun = lambda j: hs[j] if j >= 0 else R.zero()
     H = vector(R, N)
-    for j in range(N):           
-        H[j] = hfun(j - k + la_ext[N - 1 - j])
+    for j in range(N):
+        H[j] = hfun(j + 1 - k + la_ext[N - 1 - j])
     return H
 
 
