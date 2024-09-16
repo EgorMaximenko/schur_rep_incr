@@ -9,3 +9,6 @@ where the degrees of polynomials are increasing by rows.
 In the project https://github.com/EgorMaximenko/schur_rep,
 we have tested the old version of the paper,
 where the powers of polynomials are decreasing by rows.
+
+Each sage file is independent from the others.
+Therefore, the codes are quite repetitive.
