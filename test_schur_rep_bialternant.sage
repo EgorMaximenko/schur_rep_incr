@@ -297,8 +297,8 @@ def big_test_schur_rep_three_formulas(lambda_sum_max, kappa_sum_max):
     return big_result
 
 
-#print(big_test_schur_rep_three_formulas(6, 6))
+print(big_test_schur_rep_three_formulas(6, 6))
 
-# the following test takes almost 14 hours on a personal computer with 3.60GHz CPU.
-print(big_test_schur_rep_three_formulas(9, 9))
+# the following test takes almost 8 hours on a personal computer with 3.60GHz CPU.
+#print(big_test_schur_rep_three_formulas(9, 9))
 
