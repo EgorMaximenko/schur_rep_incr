@@ -198,20 +198,21 @@ def generalized_confluent_vandermonde_matrix_efficient(la, ka, y):
     N = sum(ka)
     K = max(ka)
     la_ext = la + [0] * (N - len(la))
+    la_ext_rev = list(reversed(la_ext))
     L = integer_log2(la_ext[0] + N)
     R = y.base_ring()
     C = matrix(ZZ, N, K)
     for j in range(N):
-        C[j, :] = binomial_coefs(la_ext[N - 1 - j] + j, K)
+        C[j, :] = binomial_coefs(la_ext_rev[j] + j, K)
     G = matrix(R, N, N)
     k = 0
     for q in range(n):
         B = binary_powers(y[q], L)
         for r in range(ka[q]):
-            u = [la_ext[N - 1 - j] + j - r for j in range(N)]
+            u = [la_ext_rev[j] + j - r for j in range(N)]
             jlist = [j for j in range(N) if u[j] >= 0]
-            jmax = max(jlist, default = -1)
-            for j in range(jmax + 1):
+            jmin = min(jlist, default = N)
+            for j in range(jmin, N):
                 G[j, k] = C[j, r] * binary_expon(B, u[j])
             k += 1
     return G
