@@ -8493,5 +8493,5 @@ la = [8, 1], ka = [2, 1, 1, 1, 1, 1, 1, 1], True
 la = [9], ka = [2, 1, 1, 1, 1, 1, 1, 1], True
 number of tests: 8490
 big_result = True
-time = 2.81e+04 seconds
+time = 2.79e+04 seconds
 True
